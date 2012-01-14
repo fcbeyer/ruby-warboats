@@ -6,4 +6,10 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+  
+  after_create :send_welcome_mail
+  def send_welcome_mail
+     Notifier.welcome_email(self.email).deliver
+  end
+  
 end
