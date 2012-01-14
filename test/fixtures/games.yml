@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user1score: 1
+  user2score: 1
+  isCompleted: false
+
+two:
+  user1score: 1
+  user2score: 1
+  isCompleted: false
