@@ -1,5 +1,7 @@
 RubyWarboats::Application.routes.draw do 
 
+  resources :ships
+
   resources :games
 
   devise_for :users

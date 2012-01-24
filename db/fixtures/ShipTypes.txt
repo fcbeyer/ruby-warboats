@@ -1,0 +1,5 @@
+Dreadnought,5
+Devastator,4
+Vindicator,3
+Nostromo,3
+Blockade Runner,2
