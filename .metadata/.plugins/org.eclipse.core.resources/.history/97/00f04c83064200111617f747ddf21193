@@ -1,5 +1,0 @@
-Greetings <%= @username %>
-
-Welcome to Warboats!
-
-<%= root_url %>
