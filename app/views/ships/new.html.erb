@@ -1,5 +1,29 @@
-<h1>New ship</h1>
+<h1>New Ship</h1>
+<h4>add the ship to the game board</h4>
+<%= form_for([@game, @ship]) do |f| %>
+  <% if @ship.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ship.errors.count, "error") %> prohibited this ship from being saved:</h2>
 
-<%= render 'form' %>
+      <ul>
+      <% @ship.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <!-- drop down menu to select ship you want to add to game -->
+  <%= select_tag 'ship_name', options_from_collection_for_select(@shiptypes, "id", "name"), :prompt => "Select a ship for the board" %>
+  <br />
+  <%= label_tag 'x', 'X coordinate'%>
+  <%= f.text_field :x %>
+  <br />
+  <%= label_tag 'y', 'Y coordinate'%>
+  <%= f.text_field :y %>
+  
 
-<%= link_to 'Back', ships_path %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

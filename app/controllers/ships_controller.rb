@@ -1,8 +1,23 @@
 class ShipsController < ApplicationController
   # GET /ships
   # GET /ships.json
+  
+  before_filter :authenticate_user!, :get_game
+  
+  def get_game
+    @game = Game.find(params[:game_id])
+    @ship_name = params[:ship_name]
+    #@valid_ship = @game.shiptype.where(name: @ship_name)
+    @player = current_user.players.where(game_id: @game.id)
+    if @player.nil?
+      redirect_to root_url, :notice => "You cannot look at another player's game!"
+    #else if !@valid_ship.nil?
+      #redirect_to root_url, :notice => "Cheater, you cannot add this ship to the game again!"
+    end
+  end
+  
   def index
-    @ships = Ship.all
+    @ships = @game.ships
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,6 +39,10 @@ class ShipsController < ApplicationController
   # GET /ships/new
   # GET /ships/new.json
   def new
+    
+    #find all the ship types for the drop down menu in view
+    @shiptypes = ShipType.all
+    
     @ship = Ship.new
 
     respond_to do |format|
@@ -41,10 +60,14 @@ class ShipsController < ApplicationController
   # POST /ships.json
   def create
     @ship = Ship.new(params[:ship])
+    @ship_id = params[:ship_name]
+    @ship_type = ShipType.find(@ship_id)
+    @ship.health = @ship_type.length
+    @ship.vertical = true
 
     respond_to do |format|
       if @ship.save
-        format.html { redirect_to @ship, notice: 'Ship was successfully created.' }
+        format.html { redirect_to [@game, @ship], notice: 'Ship was successfully created.' }
         format.json { render json: @ship, status: :created, location: @ship }
       else
         format.html { render action: "new" }

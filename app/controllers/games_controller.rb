@@ -26,6 +26,10 @@ class GamesController < ApplicationController
   # GET /games/new
   # GET /games/new.json
   def new
+    
+    #find all users except the one currently logged in
+    @user_opponent_list = User.find(:all, :conditions => ["id != ?", current_user.id])
+    
     @game = Game.new
 
     respond_to do |format|

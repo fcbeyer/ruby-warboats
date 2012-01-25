@@ -12,8 +12,7 @@
     </div>
   <% end %>
   
-  <%= label_tag 'user_id', 'Opponent\'s Id'%>
-  <%= text_field_tag 'user_id'%>
+  <%= select_tag 'user_id', options_from_collection_for_select(@user_opponent_list, "id", "email"), :prompt => "Select an opponent for Warboats!" %>
 
   <div class="actions">
     <%= f.submit %>
