@@ -6,14 +6,14 @@ class Notifier < ActionMailer::Base
   #
   #   en.notifier.welcome_email.subject
   #
-  def welcome_email (email)
-    #@username = username
+  def welcome_email (email,username)
+    @username = username
     mail to: email
   end
   
-  def new_game_notification (email)
-    #@username = username
-    #@opponent_username = opponent_username
+  def new_game_notification (email,username,opponent_username)
+    @username = username
+    @opponent_username = opponent_username
     mail to: email
   end
 end

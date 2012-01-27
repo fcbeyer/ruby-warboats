@@ -7,12 +7,9 @@ class ShipsController < ApplicationController
   def get_game
     @game = Game.find(params[:game_id])
     @ship_name = params[:ship_name]
-    #@valid_ship = @game.shiptype.where(name: @ship_name)
     @player = current_user.players.where(game_id: @game.id)
     if @player.nil?
       redirect_to root_url, :notice => "You cannot look at another player's game!"
-    #else if !@valid_ship.nil?
-      #redirect_to root_url, :notice => "Cheater, you cannot add this ship to the game again!"
     end
   end
   
