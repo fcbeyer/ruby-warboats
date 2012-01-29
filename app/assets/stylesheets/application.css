@@ -15,3 +15,7 @@ ul.hmenu {
 ul.hmenu li {
   display: inline;  
 }
+
+html {
+	background: url(bg.jpg) repeat-x 0 0 #1c80b9;
+}
