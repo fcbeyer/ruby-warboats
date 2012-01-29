@@ -48,5 +48,8 @@ module RubyWarboats
     # Force your application to not access the DB
     # or load models when precompiling your assets. For Heroku deployment
     config.assets.initialize_on_precompile = false
+    
+    # Don't precompile compass partials
+    config.assets.precompile << /(^[^_]|\/[^_])[^\/]*/
   end
 end
