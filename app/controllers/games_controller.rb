@@ -1,5 +1,13 @@
 class GamesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :check_user
+  
+  def check_user
+    @player = current_user.players.where(game_id: params[:id]).first
+    if @player.nil?
+      redirect_to root_url, :notice => "You cannot look at another player's game!"
+    end
+  end
+  
   
   # GET /games
   # GET /games.json

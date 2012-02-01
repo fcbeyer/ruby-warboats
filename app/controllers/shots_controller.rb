@@ -1,4 +1,16 @@
 class ShotsController < ApplicationController
+  
+  before_filter :authenticate_user!, :get_game
+  
+  def get_game
+    @game = Game.find(params[:game_id])
+    #need to call .first because it returns an array otherwise
+    @player = current_user.players.where(game_id: @game.id).first
+    if @player.nil?
+      redirect_to root_url, :notice => "You cannot look at another player's game!"
+    end
+  end
+  
   # GET /shots
   # GET /shots.json
   def index
@@ -41,6 +53,8 @@ class ShotsController < ApplicationController
   # POST /shots.json
   def create
     @shot = Shot.new(params[:shot])
+    @shot.game_id = @game.id
+    @shot.player_id = @player.id
 
     respond_to do |format|
       if @shot.save

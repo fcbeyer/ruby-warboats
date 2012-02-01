@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20120124015953) do
   end
 
   create_table "ships", :force => true do |t|
+    t.integer  "game_id"
+    t.integer  "player_id"
     t.integer  "x"
     t.integer  "y"
     t.integer  "health"
