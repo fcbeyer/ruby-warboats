@@ -9,13 +9,11 @@
 
 <% @shots.each do |shot| %>
   <tr>
-    <td><%= link_to 'Show', shot %></td>
-    <td><%= link_to 'Edit', edit_shot_path(shot) %></td>
-    <td><%= link_to 'Destroy', shot, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', [@game, shot] %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Shot', new_shot_path %>
+<%= link_to 'New Shot', new_game_shot_path(@game) %>

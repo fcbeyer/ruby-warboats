@@ -5,16 +5,18 @@ class ShipsController < ApplicationController
   before_filter :authenticate_user!, :get_game
   
   def get_game
+    #find all the ship types for the drop down menu in view
+    @shiptypes = ShipType.all
+    
     @game = Game.find(params[:game_id])
-    @ship_name = params[:ship_name]
-    @player = current_user.players.where(game_id: @game.id)
+    @player = current_user.players.where(game_id: @game.id).first
     if @player.nil?
       redirect_to root_url, :notice => "You cannot look at another player's game!"
     end
   end
   
   def index
-    @ships = @game.ships
+    @ships = @player.ships
 
     respond_to do |format|
       format.html # index.html.erb
@@ -37,9 +39,6 @@ class ShipsController < ApplicationController
   # GET /ships/new.json
   def new
     
-    #find all the ship types for the drop down menu in view
-    @shiptypes = ShipType.all
-    
     @ship = Ship.new
 
     respond_to do |format|
@@ -61,6 +60,7 @@ class ShipsController < ApplicationController
     @ship_type = ShipType.find(@ship_id)
     @ship.health = @ship_type.length
     @ship.vertical = true
+    @ship.player_id = @player.id
 
     respond_to do |format|
       if @ship.save
