@@ -9,6 +9,7 @@
 
 <% @ships.each do |ship| %>
   <tr>
+  	<td><%= ship.ship_type.name %></td>
     <td><%= link_to 'Show', [@game, ship] %></td>
     <td><%= link_to 'Edit', edit_game_ship_path(@game, ship) %></td>
   </tr>
