@@ -14,7 +14,7 @@
   <% end %>
   
   <!-- drop down menu to select ship you want to add to game -->
-  <%= select_tag 'ship_name', options_from_collection_for_select(@shiptypes, "id", "name"), :prompt => "Select a ship for the board" %>
+  <%= f.select :ship_type_id, options_from_collection_for_select(@shiptypes, "id", "name"), :prompt => "Select a ship for the board" %>
   <br />
   <%= label_tag 'x', 'X coordinate'%>
   <%= f.text_field :x %>

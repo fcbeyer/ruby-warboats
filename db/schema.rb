@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120124015953) do
+ActiveRecord::Schema.define(:version => 20120203040702) do
 
   create_table "games", :force => true do |t|
     t.boolean  "completed"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20120124015953) do
     t.boolean  "vertical"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "ship_type_id"
   end
 
   create_table "shots", :force => true do |t|
