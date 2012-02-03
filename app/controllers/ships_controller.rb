@@ -56,9 +56,7 @@ class ShipsController < ApplicationController
   # POST /ships.json
   def create
     @ship = Ship.new(params[:ship])
-    @ship_id = params[:ship_name]
-    @ship_type = ShipType.find(@ship_id)
-    @ship.health = @ship_type.length
+    @ship.health = @ship.ship_type.length
     @ship.vertical = true
     @ship.player_id = @player.id
 

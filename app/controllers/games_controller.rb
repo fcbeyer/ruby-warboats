@@ -1,10 +1,11 @@
 class GamesController < ApplicationController
-  before_filter :authenticate_user!, :check_user
+  before_filter :authenticate_user!
+  before_filter :check_user, :only => [:show, :edit, :delete]
   
   def check_user
     @player = current_user.players.where(game_id: params[:id]).first
     if @player.nil?
-      redirect_to root_url, :notice => "You cannot look at another player's game!"
+      redirect_to games_url, :notice => "You cannot look at another player's game!"
     end
   end
   
@@ -12,7 +13,7 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
+    @games = current_user.games
 
     respond_to do |format|
       format.html # index.html.erb

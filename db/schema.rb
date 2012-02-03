@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120124015953) do
+ActiveRecord::Schema.define(:version => 20120203040702) do
 
   create_table "games", :force => true do |t|
     t.boolean  "completed"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20120124015953) do
     t.boolean  "vertical"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "ship_type_id"
   end
 
   create_table "shots", :force => true do |t|
@@ -57,12 +58,12 @@ ActiveRecord::Schema.define(:version => 20120124015953) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
