@@ -1,1 +1,21 @@
 <h1>Warboats!</h1>
+
+<h4>Games you are currently playing</h4>
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @games.each do |game| %>
+  <tr>
+  	<td>Opponent: <%= game.get_opponent(current_user) %></td>
+  	<td>Game number: <%= game.id %></td>
+    <td><%= link_to 'Show', game %></td>
+      </tr>
+<% end %>
+</table>
+
+<br />
+<h4>Would you like to start a new game?</h4>
+<%= link_to 'New Game', new_game_path %>
