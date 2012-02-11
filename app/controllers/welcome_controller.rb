@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-    @games = current_user.games
+    redirect_to games_url unless current_user.nil?
   end
 end
